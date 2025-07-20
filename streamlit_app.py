@@ -1,18 +1,38 @@
 import streamlit as st
 import random
+import math
 
 st.set_page_config(page_title="Euclidian Division Practice", layout="centered")
 st.title("🧮 Euclidian Division Practice")
 
+def generate_problem_set(n=5):
+    problems = []
+    while len(problems) < n:
+        b = random.randint(10, 40)
+        gcd = random.choice([2, 3, 4, 5, 6])
+        q1 = random.randint(2, 4)
+        a = b * q1 + random.randint(1, b - 1)  # Ensure not multiple
+        if math.gcd(a, b) == gcd:
+            # Try to exclude 1-step cases where remainder is 0 immediately
+            temp_a, temp_b = a, b
+            steps = 0
+            while temp_b != 0:
+                temp_a, temp_b = temp_b, temp_a % temp_b
+                steps += 1
+            if steps >= 2:
+                problems.append((a, b))
+    return problems
+
+
 # Initialize session state
 if "problems" not in st.session_state:
-    problems = []
-    while len(problems) < 5:
-        a = random.randint(20, 100)
-        b = random.randint(10, 90)
-        if a >= b and b > 0:
-            problems.append((a, b))
-    st.session_state.problems = problems
+    # problems = []
+    # while len(problems) < 5:
+    #     a = random.randint(20, 100)
+    #     b = random.randint(10, 90)
+    #     if a >= b and b > 0:
+    #         problems.append((a, b))
+    st.session_state.problems = generate_problem_set()
     st.session_state.index = 0
     st.session_state.score = 0
     st.session_state.steps = []
@@ -24,6 +44,8 @@ if "problems" not in st.session_state:
     st.session_state.gcd_correct = False
 
 def reset_problem():
+    if st.session_state.index >= len(st.session_state.problems):
+        return  # prevent IndexError
     a, b = st.session_state.problems[st.session_state.index]
     st.session_state.a = a
     st.session_state.b = b
