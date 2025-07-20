@@ -79,7 +79,7 @@ else:
                 user_divisor = st.number_input("Divisor", key=f"divisor_{len(st.session_state.steps)}", step=1)
 
             if st.button("➡️ Use these numbers", key=f"use_nums_{len(st.session_state.steps)}"):
-                if {user_dividend, user_divisor} != {current_a, current_b}:
+                if user_dividend != current_a or user_divisor != current_b:
                     st.error(f"❌ Use the correct current numbers: {current_a} and {current_b}.")
                 else:
                     st.session_state.phase = "input_result"
@@ -91,7 +91,7 @@ else:
         elif st.session_state.phase == "input_result":
             a = st.session_state.last_dividend
             b = st.session_state.last_divisor
-            st.markdown(f"**{a} / {b} = ?**")
+            st.markdown(f"**{a} / {b} =**")
 
             col1, col2 = st.columns(2)
             with col1:
