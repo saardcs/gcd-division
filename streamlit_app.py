@@ -56,14 +56,9 @@ else:
 
     # Show previous steps
     if st.session_state.steps:
-        col1, col2, col3 = st.columns([1, 1, 1])
-        col1.markdown("**Division**")
-        col2.markdown("**Result**")
-        col3.markdown("**Remainder**")
-        for (x, y, q, r) in st.session_state.steps:
-            col1.markdown(f"{x} / {y}")
-            col2.markdown(f"{q}")
-            col3.markdown(f"{r}")
+        st.markdown("#### Steps so far:")
+        for i, (x, y, q, r) in enumerate(st.session_state.steps, 1):
+            st.markdown(f"{i}. **{x} / {y} = {q} R {r}**")
 
     if not st.session_state.done:
         current_a = st.session_state.a
