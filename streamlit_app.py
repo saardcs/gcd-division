@@ -70,7 +70,7 @@ else:
 
         st.markdown(f"### Step {len(st.session_state.steps) + 1}")
 
-        col1, col2, col3, col4, col5 = st.columns([1, 0.3, 1, 0.5, 1])
+        col1, col2, col3, col4, col5 = st.columns([0.3, 0.3, 0.3, 0.5, 1])
         with col1:
             user_dividend = st.number_input("Dividend", key=f"dividend_{len(st.session_state.steps)}", step=1)
         with col2:
