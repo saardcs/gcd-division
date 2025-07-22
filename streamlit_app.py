@@ -9,7 +9,7 @@ st.title("🧮 Euclidian Division Practice")
 
 # Sidebar with QR code
 st.sidebar.header("Scan This QR Code to View Menu Online")
-qr_link = "https://gcd-lab.streamlit.app"
+qr_link = "https://gcd-division.streamlit.app"
 qr = qrcode.make(qr_link)
 buf = io.BytesIO()
 qr.save(buf)
@@ -103,8 +103,8 @@ if st.session_state.index >= 5:
             row = [name.strip(), team.strip(), timestamp]
             sheet.append_row(row)
             st.success("✅ Score submitted!")
-            if st.button("🔁 Restart Practice"):
-                full_reset()
+            # if st.button("🔁 Restart Practice"):
+            #     full_reset()
         else:
             st.warning("Please enter your name and team name.")
 
