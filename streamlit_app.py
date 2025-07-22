@@ -1,9 +1,20 @@
 import streamlit as st
 import random
 import math
+import qrcode
+import io
 
 st.set_page_config(page_title="Euclidian Division Practice", layout="centered")
 st.title("🧮 Euclidian Division Practice")
+
+# Sidebar with QR code
+st.sidebar.header("Scan This QR Code to View Menu Online")
+qr_link = "https://gcd-lab.streamlit.app"
+qr = qrcode.make(qr_link)
+buf = io.BytesIO()
+qr.save(buf)
+buf.seek(0)
+st.sidebar.image(buf, width=300, caption=qr_link)
 
 def generate_problem_set(n=5):
     problems = []
