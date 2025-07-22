@@ -106,7 +106,7 @@ if st.session_state.index >= 5:
             if st.button("🔁 Restart Practice"):
                 full_reset()
         else:
-            st.warning("Please enter a name.")
+            st.warning("Please enter your name and team name.")
 
 else:
     if st.session_state.a is None or st.session_state.b is None:
