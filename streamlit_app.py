@@ -98,7 +98,7 @@ if st.session_state.index >= 5:
             try:
                 sheet = client.open("GCF").worksheet("Division")
             except gspread.WorksheetNotFound:
-                st.error(f"Worksheet '{selected_class}' not found. Please check your Google Sheet.")
+                st.error("Worksheet not found. Please check your Google Sheet.")
 
             row = [name.strip(), team.strip(), timestamp]
             sheet.append_row(row)
@@ -106,7 +106,7 @@ if st.session_state.index >= 5:
             # if st.button("🔁 Restart Practice"):
             #     full_reset()
         else:
-            st.warning("Please enter your name and class.")
+            st.warning("Please enter your nickname and class.")
 
 else:
     if st.session_state.a is None or st.session_state.b is None:
