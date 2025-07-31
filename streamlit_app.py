@@ -74,8 +74,8 @@ def full_reset():
 # If all problems done
 if st.session_state.index >= 5:
     st.success(f"🎉 All done! Your final score: {st.session_state.score} / 5")
-    name = st.text_input("Enter your name:")
-    team = st.text_input("Enter your team:")
+    name = st.text_input("Enter your nickname:")
+    team = st.text_input("Enter your class:")
     
     if st.button("Submit Score"):
         if name.strip() and team.strip():
@@ -106,7 +106,7 @@ if st.session_state.index >= 5:
             # if st.button("🔁 Restart Practice"):
             #     full_reset()
         else:
-            st.warning("Please enter your name and team name.")
+            st.warning("Please enter your name and class.")
 
 else:
     if st.session_state.a is None or st.session_state.b is None:
